@@ -16,11 +16,27 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $table = 'users';
 
+	protected $fillable = ['username', 'email', 'password', 'picture'];
+
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *
 	 * @var array
 	 */
 	protected $hidden = array('password', 'remember_token');
-
+	
+ 	public function friends()
+    {
+        return $this->belongsToMany('User', 'friends_users', 'user_id', 'friend_id');
+    }
+ 
+    public function addFriend(User $user)
+    {
+        $this->friends()->attach($user->id);
+    }
+ 
+    public function removeFriend(User $user)
+    {
+        $this->friends()->detach($user->id);
+    }
 }

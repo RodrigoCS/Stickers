@@ -1,0 +1,21 @@
+/**
+  CUSTOM CSS : MAIN
+**/
+
+html {
+
+}
+
+body {
+  
+}
+
+
+
+
+/*
+¨*	PROFILE
+*/
+button#profile_name_submit {
+	display: none;
+}
