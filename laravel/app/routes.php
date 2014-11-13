@@ -61,3 +61,26 @@ Route::post('profile/username', 'UsersController@updateUsername');
 Route::post('profile/password', 'UsersController@updatePassword');
 
 Route::controller('friends', 'FriendsController');
+
+/*
+|
+|	STICKERS ROUTES
+|
+*/
+Route::group(array('before' => 'auth' ,'prefix' => 'Album'), function()
+	{
+		Route::get('/', function()
+		{
+			return "hola";
+		})
+
+		Route::get('Sticker', function()
+		{
+			Redirect::route('Album');
+		});
+
+		Route::get('Sticker/{id}', function($id)
+		{
+			return Sticker::find($id);
+		});
+	});
